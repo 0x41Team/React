@@ -1,0 +1,186 @@
+body {
+    font: normal normal 500 normal 17px/20px museo-sans-rounded, sans-serif;
+    background-color: #808080;
+}
+
+.player-container {
+    box-shadow: rgba(0, 0, 0, 0.0784314) 0px 0px 30px 0px;
+    color: rgb(51, 51, 51);
+    height: 536px;
+    opacity: 0.999999940395355;
+    margin: 100px auto;
+    position: relative;
+    width: 1000px;
+    z-index: 0;
+    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+    border: 0px none rgb(51, 51, 51);
+    border-radius: 10px 10px 10px 10px;
+}
+
+.inner {
+    width: 0;
+    height: 20px;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+    background: #7eb530;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.header-bar {
+    color: rgb(51, 51, 51);
+    height: 82px;
+    min-height: 80px;
+    width: 100%;
+    border-bottom: 2px solid rgb(243, 243, 243);
+    padding-left: 40px;
+}
+
+.process-bar {
+    color: rgb(51, 51, 51);
+    width: 70%;
+    border: 0px none rgb(51, 51, 51);
+}
+
+.process-bar ul {
+    float: left;
+    height: 20px;
+    width: 100%;
+    list-style: none outside none;
+    margin: 30px 0px 0px;
+    padding: 0px;
+}
+
+.process-bar ul li {
+    float: left;
+    height: 20px;
+    position: relative;
+    background: rgb(243, 243, 243) ;
+    border-left: 2px solid rgb(255, 255, 255);
+}
+
+.box-heart {
+    color: rgb(51, 51, 51);
+    float: right;
+    height: 80px;
+    width: 25%;
+    margin: 0px -10px 0px 0px;
+    padding: 0px;
+}
+
+.box-heart li {
+    float: left;
+    position: relative;
+    width: 26%;
+    list-style: none outside none;
+}
+
+.box-heart li a {
+    color: rgb(153, 153, 153);
+    display: block;
+    height: 80px;
+    text-decoration: none;
+    padding: 30px 15px;
+}
+
+.box-heart div {
+    text-align: left;
+}
+
+.box-heart div ul {
+    display: inline;
+    padding: 0px;
+}
+
+.box-heart div ul li {
+    float: left;
+    width: 25px;
+    margin: 0px 0px 0px 6px;
+    padding: 24px 15px;
+}
+
+.box-heart div ul li span {
+    color: red;
+    font-size: 30px;
+}
+
+.quiz-body {
+    text-align: center;
+}
+.quiz-body-content {
+    box-shadow: rgba(0, 0, 0, 0.0470588) 0px 2px 5px 0px inset;
+    display: block;
+    min-height: 150px;
+    vertical-align: top;
+    border: 2px solid rgb(233, 233, 233);
+    border-radius: 10px 10px 10px 10px;
+    width: 80%;
+    margin: auto;
+    text-align: left;
+    padding: 10px 10px 10px 10px;
+}
+
+.quiz {
+    width: 78%;
+    min-height: 120px;
+    margin:10px auto;
+}
+
+.quiz-answer {
+    text-align: left;
+    width: 45%;
+    float: left;
+    margin: 0 2% 2% 0;
+}
+
+.quiz-answer input {
+    margin: 10px;
+}
+
+.quiz-footer {
+    width : 100%;
+    margin: auto;
+    min-height: 103px;
+    border-radius: 0 0 10px 10px;
+    position: relative;
+    bottom: 0%;
+    padding: 30px 30px 0 30px;
+}
+
+.quiz-button {
+    font: normal normal 500 normal 17px/20px museo-sans-rounded, sans-serif;
+    background-color: #7eb530;
+    color: white;
+    font-size: 17px;
+    height: 42px;
+    width: 150px;
+    border-radius: 100px 100px 100px 100px;
+    border: none;
+    outline: none !important;
+}
+.quiz-button:focus {
+    background-color: #7eb530;
+    color: white;
+    font-size: 17px;
+}
+.quiz-button:active:hover {
+    background-color: #94c500;
+    color: white;
+    font-size: 17px;
+}
+
+
+.quiz-button:hover {
+    background-color: #94c500;
+    color: white;
+    font-size: 17px;
+}
+
+.quiz-button-disable {
+    background-color: darkgray;
+    pointer-events: none;
+}

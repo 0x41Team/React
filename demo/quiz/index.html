@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz React</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<div id="quiz-content">
+
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/JSXTransformer.js"></script>
+<script src="js/react.min.js"></script>
+<script src="quiz.js" type="text/jsx"></script>
+
+<script type="text/jsx">
+    "use strict";
+
+    var data = [
+        {
+            answer: [{
+                answer_text: "show syntax",
+                id: "1"
+            }, {
+                answer_text: "syntax show",
+                id: "2"
+            },{
+                answer_text: "syntax on",
+                id: "3"
+            }],
+            html: "<p>Để highlight cú pháp trong VIM, thì gõ lệnh nào?</p>",
+            quiz_id: "21",
+            type: 0
+        },{
+            answer: [{
+                answer_text: "vim có thể soạn thảo qua terminal",
+                id: "68"
+            }, {
+                answer_text: "nano không soạn thảo được qua terminal",
+                id: "67"
+            },{
+                answer_text: "WebStorm cần phải cài Java JDK mới chạy được",
+                id: "66"
+            }],
+            html: "<p>Hãy chọn đáp án đúng (có thể có nhiều lựa chọn)</p>",
+            quiz_id: "19",
+            type: 1
+        }
+    ];
+
+
+    React.render(<Quiz data={data}/>, document.getElementById('quiz-content'));
+</script>
+
+</body>
+</html>

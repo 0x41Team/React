@@ -3,53 +3,6 @@
  */
 "use strict";
 
-var data = [
-    {
-        answer: [{
-            answer_text: "show syntax",
-            id: "1"
-        }, {
-            answer_text: "syntax show",
-            id: "2"
-        },{
-            answer_text: "syntax on",
-            id: "3"
-        }],
-        html: "<p>Để highlight cú pháp trong VIM, thì gõ lệnh nào?</p>",
-        quiz_id: "21",
-        type: 0
-    },{
-        answer: [{
-            answer_text: "vim có thể soạn thảo qua terminal",
-            id: "68"
-        }, {
-            answer_text: "nano không soạn thảo được qua terminal",
-            id: "67"
-        },{
-            answer_text: "WebStorm cần phải cài Java JDK mới chạy được",
-            id: "66"
-        }],
-        html: "<p>Hãy chọn đáp án đúng (có thể có nhiều lựa chọn)</p>",
-        quiz_id: "19",
-        type: 1
-    }
-];
-
-
-var QuizApp = React.createClass({
-   render: function() {
-       return (
-           <div className="modal fade" id="quiz-modal" tabindex="-1" aria-hidden ="true">
-                <div className="modal-dialog">
-                    <Quiz quiz={data}/>
-                </div>
-           </div>
-       )
-   }
-});
-
-
-
 
 var Header = React.createClass({
     render: function() {
@@ -60,8 +13,8 @@ var Header = React.createClass({
                         <div className="info-bar">
                             <i className="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Bấm phím số để chọn câu trả lời, bấm Enter để kiểm tra hoặc chuyển câu hỏi kế tiếp"></i>
                         </div>
-                        <ProgressBar />
-                        <HearBar />
+                        <ProgressBar numberQuiz={this.props.numberQuiz}/>
+                        <HeartBar />
                     </div>
                 </div>
             </div>
@@ -69,18 +22,42 @@ var Header = React.createClass({
     }
 });
 
+
+// FIXME
 var Body = React.createClass({
     render: function() {
+        var html = [];
+        var question = this.props.question;
+        var answer = question[0].answer;
+        if (question.type == 0) {
+            for (let i = 1; i <= Object.keys(answer).length; i++ ) {
+                html.push(
+                    <div className="quiz-answer" key={this.props.quizIndex + "-" + i}>
+                        <input type="radio" name="single-quiz" value={Object.keys(answer)[i - 1]}/>
+                        {answer[i]}
+                    </div>
+                )
+            }
+        } else if (question.type == 1) {
+            for (let i = 1; i <= Object.keys(answer).length; i++ ) {
+                html.push(
+                    <div className="quiz-answer" key={this.props.quizIndex + "-" + i}>
+                        <input type="checkbox" name="single-quiz" value={Object.keys(answer)[i - 1]}/>
+                        {answer[i]}
+                    </div>
+                )
+            }
+        } else {
+            html.push(<div className="quiz-answer"></div>)
+        }
+
         return (
             <div className="modal-body">
                 <div className="row">
                     <div className="col-md-12">
-                        <div className="quiz-content">
-
-                        </div>
+                        <div className="quiz-content">{html}</div>
                     </div>
                 </div>
-
             </div>
         )
     }
@@ -88,19 +65,7 @@ var Body = React.createClass({
 
 
 var HeartBar = React.createClass({
-    getInitialStates: function() {
-        return {
-            answered: null,
-            theEnd: null
-        }
-    },
     render: function() {
-        var html = [];
-        for (var i=0; i < this.props.numberQuiz; i++) {
-            html.push(
-                <span className="heart-red"><i className="fa fa-heart fa-2s"></i></span>
-            )
-        }
         return (
             <div className="heartBar">
                 <div className="heart-bar text-center" data-toggle="tooltip" data-placement="bottom" title="Bạn có 3 trái tim, trả lời sai mỗi câu mất 1 trái tim, giữ tối thiểu 1 trái tim để qua bài kiểm tra!">
@@ -141,83 +106,60 @@ var ProgressBar = React.createClass({
     }
 });
 
-var ButtonControl = createClass({
-    getInitialState: function() {
-        return {
-            isTest: true,
-            userAnswer: []
-        }
-    },
-    render: function() {
-        if (checkAnswer) {
-
-        }
-        return (
-            <div className="buttonControl">
-                <button id="btnCheckQuiz" type="button" className="btn btn-success btn-lg btn-flat">
-                    <i className="fa fa-question-circle"></i> Kiểm tra
-                </button>
-                <button id="btnNextQuiz" type="button" className="btn btn-success btn-lg btn-flat hidden">
-                    <i className="fa fa-question-circle"></i> Tiếp tục
-                </button>
-            </div>
-        )
-    }
-});
 
 
 var Quiz = React.createClass({
     getInitialState: function() {
         return {
-            userAnswer: [],
-            quizIndex: 0,
-            type: this.props.data.type
+            question: this.props.data,
+            numberQuiz: this.props.data.length,
+            indexQuiz: 0,
+            userAnswer: null
         }
     },
-    componentDidMount: function() {
-        // Show
-    },
-    setAnswer: function(event) {
-        var answer = this.props.userAnswer;
-        if (type == 0) {
-            answer[0] = event.target.value;
-        } else {
-            var indexSelected = answer.indexOf(event.target.value);
-            if (indexSelected ==! -1) {
-                answer.push(event.target.value);
-            }
-        }
-
-        this.props.setAnswer(answer);
-    },
-
-    nextQuestion: function() {
+    showModal: function() {
 
     },
-    checkAnswer: function() {
-        if (this.state.userAnswer.length > 0) {
-
-        }
-    },
-
+    //setAnswer: function(event) {
+    //    var answer = this.props.userAnswer;
+    //    if (type == 0) {
+    //        answer[0] = event.target.value;
+    //    } else {
+    //        var indexSelected = answer.indexOf(event.target.value);
+    //        if (indexSelected ==! -1) {
+    //            answer.push(event.target.value);
+    //        }
+    //    }
+    //
+    //    this.props.setAnswer(answer);
+    //},
     render: function() {
         var content = [];
-            content.push(<Header {this.props.numberQuiz}/>);
-            content.push(<Body quizIndex={this.state.quizIndex}  />);
-            content.push(<Footer userAnswer={this.state.userAnswer} checkAnswer={this.checkAnswer} nexQuestion={this.nextQuestion}/>);
+            content.push(<Header numberQuiz={this.state.numberQuiz}/>);
+            content.push(<Body question={this.state.question}/>); // TODO
+            content.push(<Footer numberQuiz={this.state.numberQuiz} indexQuiz={this.state.indexQuiz} />);
 
         return (
-            <div className="quiz">{content}</div>
+            <div>
+                <div className="modal fade" id="quiz-modal" tabindex="-1" aria-hidden="true">
+                    <div className="modal-dialog">{content}</div>
+                </div>
+                <button className="btn btn-primary">Start Quiz</button>
+            </div>
         )
     }
 });
 
+// FIXME LOGICAL
 var Footer = React.createClass({
-    checkAnswer: function() {
-        this.props.checkAnswer();
+    getInitialState: function() {
+      return {
+          isContinued: false
+      }
     },
-    nextQuestion: function() {
-        this.props.nextQuestion();
+
+    handleClick: function() {
+        this.setState({isContinued: !this.state.isContinued})
     },
 
     showCorrect: function() {
@@ -230,16 +172,24 @@ var Footer = React.createClass({
 
     },
     render: function() {
-        if (this.props.userAnswered == -1) {
-            // Tra loi sai
+        var html = [];
+        if (this.props.indexQuiz <= this.props.numberQuiz) {
+            if (this.state.isContinued) {
+                html.push(
+                    <button id="btnNextQuiz" type="button" className="btn btn-success btn-lg btn-flat hidden">
+                        <i className="fa fa-question-circle"></i> Tiếp tục
+                    </button>
+                )
+            } else {
+                html.push(
+                    <button id="btnCheckQuiz" type="button" className="btn btn-success btn-lg btn-flat">
+                        <i className="fa fa-question-circle"></i> Kiểm tra
+                    </button>
+                )
+            }
         }
-
         return (
-            <div className="modal-footer">
-                <buttonControl />
-            </div>
+            <div className="modal-footer">{html}</div>
         )
     }
 });
-
-React.render(<QuizApp data={data} />, document.getElementById('quiz'));
