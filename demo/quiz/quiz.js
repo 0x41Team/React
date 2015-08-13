@@ -118,8 +118,22 @@ var Quiz = React.createClass({
         }
     },
     showModal: function() {
+        $('#quiz-modal').on('show.bs.modal', function(e) {
 
+        })
     },
+    setProgressBar: function() {
+        var progress = $('.progressbar');
+      if (this.props.numberQuiz > 1) {
+          var weight = parseInt(progress.css('width')) / 100;
+          for (var i = 0; i < this.props.numberQuiz - 1; i++) {
+              this.props.length ="width: " + Math.ceil(parseInt(100 / this.props.numberQuiz * (i + 1)) * weight * 0.99) + "px";
+              var divider = '<div className="bar-divider" style={this.props.length} </div>';
+              $('.divider-group').append(divider);
+          }
+      }
+    },
+
     //setAnswer: function(event) {
     //    var answer = this.props.userAnswer;
     //    if (type == 0) {
