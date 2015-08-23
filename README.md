@@ -57,3 +57,20 @@ Let's check out a simple example with the use of these three attributes. The cod
 </body>
 </html>
 ```
+
+### ReactJS initialization phase
+
+In this phase, a ReactJS element instance is created for the first time and rendered in the browser. ReactJS provides a set of methods for the setup and preprocessing during this phase. During initialization of an element, the methods are called in a specific order. The following diagram shows the order in which the callback methods are called during the initialization phase.
+
+![ReactJS Rendering flow](https://raw.githubusercontent.com/0xgi/Docs/master/images/reactFlow.jpg)
+
+The details of these methods are as follows:
+
+* `getDefaultProps`: This method is used to created default properties for a ReactJS element. This method must return an object or NULL.
+* `getInitialState`: This method is used to created states for the component. This method must return an object or NULL.
+* `componentWillMount`: This method get executed just before the component is mounted to the page.
+* `render`: This method returns the ReactJS component tree for rendering in the browser.
+* `componentDidMount`: This method gets executed just after the initial rendering of the component in the browser.
+
+
+
