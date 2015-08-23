@@ -1,5 +1,52 @@
 # ReactJS
 
+### ReactJS inline style
+
+In ReactJS, we can add an inline style using the `style` attribute and ReactJS expression. ReactJS takes inline style as a Javascript `anonymous object containing` a key/value pair representing properties and their values separated with a colon (`:`). The following syntax shows the Javascript object for inline style:
+
+```javascript
+var styleObject = {
+    styleAttribute: "styleValue"
+};
+```
+* `styleAttribute`: This represents the CSS property name as key. The name should follow `camelCase` representation. For example, the `box-shadow` style attribute becomes `boxShadow`. The vender prefix attribute starts with a capital letter except `ms` (Microsoft Internet Explorer).
+* `styleValue`: This represents a value for the CSS property, and it is in string format. For example, `1px solid grey` should be wrapped in double quotes like `"1px solid grey"`. 
+
+Let's check out an example for using inline style in a ReactJS element. The code for the ReactJS element is as follows:
+
+```HTML
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ReactJS inline style demo</title>
+    <script src="bower_components/react/react.js"></script>
+    <script src="bower_components/react/JSXTransformer.js"></script>
+</head>
+<body>
+<script type="text/jsx">
+    var messageStyle={
+            color: "red",
+            border:"1px solid grey",
+            boxShadow:"2px 2px 2px lightGrey",
+            padding: "20px",
+            width: "200px"
+        },
+        GoodMorning = React.createClass({
+            render: function() {
+                return (
+                  <div style={messageStyle}>
+                    Good Morning Developers
+                  </div>
+                );
+            }
+    });
+    React.render(<GoodMorning/>, document.body);
+</script>
+</body>
+</html>
+```
+
 ### Useful non-DOM attributes
 
 In this section, we will learn some non-DOM attributes that can be used with the JSX element. The following list contains some of the non-DOM attributes:
