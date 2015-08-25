@@ -119,5 +119,18 @@ The details of these methods are as follows:
 * `render`: This method returns the ReactJS component tree for rendering in the browser.
 * `componentDidMount`: This method gets executed just after the initial rendering of the component in the browser.
 
+### ReactJS lifetime phase
+
+Once the ReactJS component is instantiated successfully, the lifetime phase starts. In this phase, the component can go through many changes. These changes include a change in the current state, or a change in any property value. ReactJS provides a set of callback methods for overriding and implementing our own logic for these states. The following diagram shows the order in which the callback methods are called during lifetime phase:
+
+![ReactJS Rendering flow](https://raw.githubusercontent.com/0x41Team/Docs/master/images/flow-reactjs.jpg)
+
+The details of these methods are as follows:
+
+* `componentWillRecieveProps`: This methods gets executed whenever a new property is created for the component.
+* `shouldComponentUpdate`: This method returns a Boolean value `true` or `false`. The `true` flag indicates that the `render` method will be called when a new property is received.
+* `componentWillUpdate`: This method get executed just before the new property is received by the component. It provides an opportunity for preprocessing before the `render` method is called.
+* `render`: This method return the updated component tree for rendering in the browser.
+* `componentDidUpdate`: This method gets executed just after the modified changes are rendered in the browser.
 
 
